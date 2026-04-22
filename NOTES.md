@@ -49,3 +49,13 @@
 - Next: `Fix error handling for ReadFileTool
 
 ---
+
+### 2026-04-22
+
+- `[FIX]` `ReadFileTool` error handling implemented — catches `FileNotFoundError` and general `Exception` (deferred from 2026-04-12)
+- `[BUG]` `registry.py` — bare `from tool import ...` will break depending on invocation context. Should be `from .tool import ...` (relative) or `from core.tool import ...` (absolute)
+- `[BUG]` `registry.py` — silent skip when a pack lists an unknown tool name; agent may expect a tool that never loaded. Consider warning or raising on unknown names
+- `[BUG]` `registry.py` — no error handling on `open(f"packs/{pack_name}.yaml")` — uncaught `FileNotFoundError` if pack doesn't exist
+- Next: fix above three `registry.py` bugs
+
+---

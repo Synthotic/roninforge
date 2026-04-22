@@ -20,8 +20,13 @@ class ReadFileTool(Tool):
     description = "Read the file and return contents"
 
     def run(self, args):
-        with open(args["path"]) as f:   # opens file 
-            return f.read()             # returns contents of file
+        try:    
+            with open(args["path"]) as f:   # opens file 
+                return f.read()             # returns contents of file
+        except FileNotFoundError:
+            return f"File not found: {args['path']}"  # handle errors
+        except Exception as e:
+            return f"Error reading file: {e}"                        # catch crashes
 
 # --- tool executes python code - specific tool implementation ---
 
