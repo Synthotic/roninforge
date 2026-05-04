@@ -59,3 +59,12 @@
 - Next: fix above three `registry.py` bugs
 
 ---
+
+### 2026-05-02
+
+- `[FIX]` Fixed indentation error in `agent.py` lines 17-19 — `clean`, `if clean is None`, and `return` were dedented out of the `try` block, causing `IndentationError`
+- `[CHANGE]` Agent end-to-end run confirmed working — successfully scanned `main.py` and returned security issue analysis via Qwen2.5-Coder 7B Q4
+- `[FIX]` `extract_json()` in `agent.py` resolves the known gap (2026-04-06) — strips preamble text before JSON so `json.loads` no longer fails on model output with leading text
+- Next: fix three `registry.py` bugs logged 2026-04-22
+
+---

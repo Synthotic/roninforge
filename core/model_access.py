@@ -19,7 +19,8 @@ class OllamaAccess(ModelAccess):
         full_messages = [{"role": "system", "content": system_prompt}] + messages  # inject system prompt first
         payload = {
             "model": self.model,                   # stored from __init__
-            "messages": full_messages              # system + conversation
+            "messages": full_messages,              # system + conversation
+            "stream": False
         }
         response = requests.post(self.url + "/api/chat", json=payload)  # send to ollama
         result = response.json()                   # parse what comes back

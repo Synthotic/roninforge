@@ -1,6 +1,6 @@
 # Tool registry — loads and registers tools for the agent
 import yaml   # load YAML files
-from tool import ReadFileTool, RunCodeTool # import tools
+from core.tool import ReadFileTool, RunCodeTool # import tools
 
 TOOL_MAP = {
     "read_file": ReadFileTool,  
@@ -9,7 +9,7 @@ TOOL_MAP = {
 
 #---  load tools from pack.yaml file ---
 def load_tools(pack_name):
-    with open(f"packs/{pack_name}.yaml") as f: # load pack
+    with open(f"packs/{pack_name}/pack.yaml") as f: # load pack
         pack = yaml.safe_load(f) # load pack
 
     tools = {} # empty dictionary to store tools
