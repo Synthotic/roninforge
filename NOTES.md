@@ -64,7 +64,15 @@
 
 - `[FIX]` Fixed indentation error in `agent.py` lines 17-19 — `clean`, `if clean is None`, and `return` were dedented out of the `try` block, causing `IndentationError`
 - `[CHANGE]` Agent end-to-end run confirmed working — successfully scanned `main.py` and returned security issue analysis via Qwen2.5-Coder 7B Q4
+- `[DECISION]` `agent.py` returns raw model reply if no JSON found (line 19) — intentional fallback for when Qwen doesn't follow the structured format
 - `[FIX]` `extract_json()` in `agent.py` resolves the known gap (2026-04-06) — strips preamble text before JSON so `json.loads` no longer fails on model output with leading text
 - Next: fix three `registry.py` bugs logged 2026-04-22
+
+---
+
+### 2026-05-06
+
+- `[CHANGE]` Added `trim_messages()` to `agent.py` — trims message history to stay under `max_tokens=3000` (default), estimates token count at 4 chars/token, drops oldest messages first
+- `[DECISION]` Dropping from the front is intentional for now — may lose original user instruction in long runs, acceptable at this stage
 
 ---
