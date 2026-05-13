@@ -76,3 +76,13 @@
 - `[DECISION]` Dropping from the front is intentional for now — may lose original user instruction in long runs, acceptable at this stage
 
 ---
+
+### 2026-05-13
+
+- `[CHANGE]` Added `archive` global list — trimmed messages are saved here instead of discarded
+- `[CHANGE]` Added `extract_tags()` — strips stopwords, extracts keywords from a message for later retrieval
+- `[CHANGE]` Added `recall()` — searches archive for messages with overlapping tags, injects top 2 matches into conversation window each step
+- `[FIX]` Fixed `imimport json` typo on line 1 — would have caused `SyntaxError`
+- Next: interactive mode
+
+---
