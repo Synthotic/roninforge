@@ -14,9 +14,15 @@ provider = OllamaAccess("qwen2.5-coder:7b-instruct-q4_K_M", "http://localhost:11
 # 3. load the tools
 tools = load_tools("secdev")    
 
-# 4. first message 
-messages = [{"role": "user", "content": "Read main.py and review it for security issues"}]
+# 4. conversation history
+messages = []
 
-# 5. run the agent
-reply = run(provider, messages, tools, pack["system_prompt"], 10)
-print(reply)
+# 5. interactive loop
+while True:
+    user_input = input("\nYou: ")
+    if user_input.lower() in ["exit", "quit"]:
+        print("Shutting down...")
+        break
+    messages.append({"role": "user", "content": user_input})
+    reply = run(provider, messages, tools, pack["system_prompt"], 10)
+    print(f"\nAgent: {reply}")

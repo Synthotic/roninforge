@@ -86,3 +86,10 @@
 - Next: interactive mode
 
 ---
+
+### 2026-06-08
+
+- `[CHANGE]` Added interactive mode to `main.py` — `while True` loop with `input()`, appends user messages to `messages`, prints agent reply each turn; `exit`/`quit` to stop
+- `[BUG]` Response loop issue — deferred, will fix later
+
+---
